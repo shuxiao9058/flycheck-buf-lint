@@ -6,7 +6,7 @@
 ;; Keywords: convenience, tools, buf, protobuf
 ;; URL: https://github.com/shuxiao9058/flycheck-buf-lint
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "25") (flycheck "0.22") (cl-lib "0.5") (s "1.12.0"))
+;; Package-Requires: ((emacs "26.1") (flycheck "0.22") (s "1.12.0"))
 
 ;;
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -73,8 +73,7 @@ and the buffer that were checked."
        :end-column .end_column
        :checker checker
        ;; :buffer buffer
-       :filename (expand-file-name .path (flycheck-buf-lint--project-root))
-       ))))
+       :filename (expand-file-name .path (flycheck-buf-lint--project-root))))))
 
 (flycheck-define-checker buf-lint
   "A Protobuf lint checker using buf
