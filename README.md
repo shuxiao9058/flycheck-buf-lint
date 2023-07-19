@@ -14,3 +14,7 @@ Add following code to your configuration.
 	 (lambda()
            (flycheck-buf-lint-setup))))
 ```
+
+## License
+
+Licensed under GPLv3.
