@@ -73,9 +73,9 @@ and the buffer that were checked."
        :filename (expand-file-name .path (flycheck-buf-lint--project-root))))))
 
 (flycheck-define-checker buf-lint
-  "A Protobuf lint checker using buf
+  "A Protobuf lint checker using buf.
 
-See URL `https://buf.build/docs/lint/usage/'."
+See URL <https://buf.build/docs/lint/usage/>."
   :command ("buf" "lint" (eval (concat (buffer-file-name) "#include_package_files=true")) "--error-format" "json"
 	    (eval (let ((project-root (flycheck-buf-lint--project-root)))
 		    (when project-root

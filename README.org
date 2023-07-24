@@ -1,0 +1,24 @@
+#+title: flycheck-buf-lint
+
+[[https://melpa.org/#/flycheck-buf-lint][file:https://melpa.org/packages/flycheck-buf-lint-badge.svg]] [[https://github.com/shuxiao9058/flycheck-buf-lint/actions/workflows/melpazoid.yml][https://github.com/shuxiao9058/flycheck-buf-lint/actions/workflows/melpazoid.yml/badge.svg]]
+
+Flycheck checker for protobuf with [[https://github.com/bufbuild/buf][buf.build]].
+
+* Installation
+
+* straight-use-package
+
+Add following code to your configuration.
+
+#+begin_src elisp
+(use-package flycheck-buf-lint
+  :straight t
+  :hook ((protobuf-mode protobuf-ts-mode) .
+	 (lambda()
+           (flycheck-buf-lint-setup))))
+
+#+end_src
+
+* License
+
+Licensed under GPLv3.
