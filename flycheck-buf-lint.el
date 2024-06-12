@@ -41,7 +41,7 @@
 (defun flycheck-buf-lint--project-root (&optional _checker)
   "Return the nearest directory holding the buf.yaml configuration."
   (and buffer-file-name
-       (locate-dominating-file buffer-file-name "buf.yaml")))
+       (expand-file-name (locate-dominating-file buffer-file-name "buf.yaml"))))
 
 (defun flycheck-buf-lint--parse-flycheck (output checker buffer)
   "Parse OUTPUT as bento JSON.
@@ -77,12 +77,13 @@ and the buffer that were checked."
 
 See URL <https://buf.build/docs/lint/usage/>."
   :command ("buf" "lint" (eval (concat (buffer-file-name) "#include_package_files=true")) "--error-format" "json"
-	    (eval (let ((project-root (flycheck-buf-lint--project-root)))
-		    (when project-root
-		      `("--config" ,(expand-file-name "buf.yaml" project-root))))))
+	    ;; (eval (let ((project-root (flycheck-buf-lint--project-root)))
+	    ;; 	    (when project-root
+	    ;; 	      `("--config" ,(expand-file-name "buf.yaml" project-root)))))
+	    )
   :error-parser flycheck-buf-lint--parse-flycheck
-  :working-directory (lambda (_checker) (flycheck-buf-lint--project-root))
-  :enabled (lambda () (flycheck-buf-lint--project-root))
+  :working-directory flycheck-buf-lint--project-root
+  :enabled flycheck-buf-lint--project-root
   :modes protobuf-mode)
 
 ;;;###autoload
