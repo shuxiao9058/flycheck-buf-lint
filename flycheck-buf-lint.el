@@ -40,8 +40,9 @@
 
 (defun flycheck-buf-lint--project-root (&optional _checker)
   "Return the nearest directory holding the buf.yaml configuration."
-  (and buffer-file-name
-       (expand-file-name (locate-dominating-file buffer-file-name "buf.yaml"))))
+  (when-let* ((buffer-name buffer-file-name)
+	      (buf-yaml-file (locate-dominating-file buffer-name "buf.yaml")))
+    (expand-file-name buf-yaml-file)))
 
 (defun flycheck-buf-lint--parse-flycheck (output checker buffer)
   "Parse OUTPUT as bento JSON.
